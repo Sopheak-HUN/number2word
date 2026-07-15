@@ -1,28 +1,67 @@
-name: Publish to npm
+name: Publish Packages
 
 on:
-  release:
-    types: [published]
-  # Also allows publishing manually from the Actions tab.
-  workflow_dispatch:
-
-permissions:
-  contents: read
+  push:
+    branches:
+      - main
+      - master
+    tags:
+      - 'v*' # Trigger when you push a tag like v0.1.0
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      # id-token: write
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 24
-          registry-url: "https://registry.npmjs.org"
+          node-version: '22.x'
+          registry-url: 'https://registry.npmjs.org/'
 
-      - run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      # prepublishOnly also builds and tests, so a broken package can never ship.
-      - run: npm publish --access public
+      - name: Run Build
+        run: npm run build
+
+      - name: Run Tests
+        run: npm run test
+
+      - name: Check if version exists
+        id: check
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          NAME=$(node -p "require('./package.json').name")
+          if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
+            echo "Version $VERSION already exists"
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "Version $VERSION does not exist"
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish to NPM
+        if: steps.check.outputs.exists == 'false'
+        run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Setup Node for GitHub Packages
+        if: steps.check.outputs.exists == 'false'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com/'
+
+      - name: Publish to GitHub Packages
+        if: steps.check.outputs.exists == 'false'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
