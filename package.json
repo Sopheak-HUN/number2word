@@ -1,0 +1,36 @@
+{
+  "name": "number2letter",
+  "version": "0.1.0",
+  "description": "Convert numbers to English words (1 → one, 42 → forty-two)",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "keywords": [
+    "number",
+    "words",
+    "letter",
+    "convert",
+    "spell",
+    "number-to-words"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
