@@ -1,7 +1,10 @@
 {
   "name": "@num-words/number2word",
   "version": "0.1.0",
-  "description": "Convert numbers to English words (1 → one, 42 → forty-two)",
+  "description": "Convert numbers to words in 16 languages (one, quarante-deux, 四十二, សែសិបពីរ)",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -40,5 +43,8 @@
   },
   "devDependencies": {
     "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   }
 }
