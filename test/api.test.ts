@@ -7,7 +7,20 @@ test("defaults to English", () => {
 });
 
 test("lists supported languages", () => {
-  assert.deepEqual([...languages].sort(), ["en", "fr", "km"]);
+  assert.deepEqual(
+    [...languages].sort(),
+    ["ar", "de", "en", "es", "fr", "hi", "id", "km", "lo", "ms", "my", "pt", "ru", "th", "vi", "zh"]
+  );
+});
+
+test("every language handles 0, 1, and negatives", () => {
+  for (const lang of languages) {
+    for (const n of [0, 1, -1, 42, 1000, 1000000]) {
+      const words = numberToWords(n, lang);
+      assert.equal(typeof words, "string");
+      assert.ok(words.length > 0, `${lang} returned empty string for ${n}`);
+    }
+  }
 });
 
 test("rejects unknown languages", () => {

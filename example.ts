@@ -1,12 +1,25 @@
-import { numberToWords, languages } from "./src/index.ts";
+import { numberToWords, languages, type Language } from "./src/index.ts";
 
-console.log(numberToWords(42));          // forty-two (English is the default)
-console.log(numberToWords(42, "fr"));    // quarante-deux
-console.log(numberToWords(42, "km"));    // សែសិបពីរ
+const NAMES: Record<Language, string> = {
+  ar: "Arabic",
+  de: "German",
+  en: "English",
+  es: "Spanish",
+  fr: "French",
+  hi: "Hindi",
+  id: "Indonesian",
+  km: "Khmer",
+  lo: "Lao",
+  ms: "Malay",
+  my: "Burmese",
+  pt: "Portuguese",
+  ru: "Russian",
+  th: "Thai",
+  vi: "Vietnamese",
+  zh: "Chinese",
+};
 
-console.log(numberToWords(1234, "en"));  // one thousand two hundred thirty-four
-console.log(numberToWords(1234, "fr"));  // mille deux cent trente-quatre
-console.log(numberToWords(1234, "km"));  // មួយពាន់ពីររយសាមសិបបួន
-
-console.log(numberToWords(-7, "km"));    // ដកប្រាំពីរ
-console.log(languages);                  // [ 'en', 'fr', 'km' ]
+console.log("1234 in every language:\n");
+for (const lang of languages) {
+  console.log(`  ${lang}  ${NAMES[lang].padEnd(12)} ${numberToWords(1234, lang)}`);
+}

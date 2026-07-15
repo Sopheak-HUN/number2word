@@ -1,5 +1,5 @@
 {
-  "name": "number2letter",
+  "name": "number2words",
   "version": "0.1.0",
   "description": "Convert numbers to English words (1 → one, 42 → forty-two)",
   "type": "module",
@@ -28,8 +28,16 @@
     "spell",
     "number-to-words"
   ],
-  "author": "",
+  "author": "Sopheak-HUN",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sopheak-HUN/number2word.git"
+  },
+  "homepage": "https://github.com/Sopheak-HUN/number2word#readme",
+  "bugs": {
+    "url": "https://github.com/Sopheak-HUN/number2word/issues"
+  },
   "devDependencies": {
     "typescript": "^7.0.2"
   }

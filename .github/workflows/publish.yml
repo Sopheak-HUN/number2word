@@ -1,0 +1,28 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+  # Also allows publishing manually from the Actions tab.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
+
+      - run: npm ci
+
+      # prepublishOnly also builds and tests, so a broken package can never ship.
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
