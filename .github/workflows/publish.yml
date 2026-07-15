@@ -1,4 +1,4 @@
-name: Publish to npm
+name: Publish Packages
 
 on:
   push:
@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      packages: write
       id-token: write
     steps:
       - name: Checkout code
@@ -51,3 +52,24 @@ jobs:
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Setup Node for GitHub Packages
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          registry-url: 'https://npm.pkg.github.com/'
+
+      # GitHub Packages requires the scope to match the repo owner,
+      # so the copy published here is named @sopheak-hun/number2word.
+      # It has its own version check because the two registries can be out of sync.
+      - name: Publish to GitHub Packages
+        run: |
+          npm pkg set name=@sopheak-hun/number2word
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "@sopheak-hun/number2word@$VERSION" version > /dev/null 2>&1; then
+            echo "Version $VERSION already exists on GitHub Packages"
+          else
+            npm publish
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
