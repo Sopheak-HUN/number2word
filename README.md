@@ -1,4 +1,4 @@
-# number2letter
+# number2words
 
 Convert numbers to words in **16 languages**.
 
@@ -37,7 +37,7 @@ numberToWords(42, "zh");  // "四十二"
 ## Install
 
 ```sh
-npm install number2letter
+npm install @num-words/number2word
 ```
 
 ## How to use
@@ -45,7 +45,7 @@ npm install number2letter
 ### Basic usage
 
 ```ts
-import { numberToWords } from "number2letter";
+import { numberToWords } from "@num-words/number2word";
 
 // English is the default
 numberToWords(42);           // "forty-two"
@@ -72,7 +72,7 @@ numberToWords(-7, "zh");     // "负七"
 ### List the available languages
 
 ```ts
-import { numberToWords, languages } from "number2letter";
+import { numberToWords, languages } from "@num-words/number2word";
 
 for (const lang of languages) {
   console.log(lang, numberToWords(1234, lang));
@@ -84,7 +84,7 @@ for (const lang of languages) {
 The `lang` parameter is typed, so a typo is a compile error, and `Language` is exported for your own signatures:
 
 ```ts
-import { numberToWords, type Language } from "number2letter";
+import { numberToWords, type Language } from "@num-words/number2word";
 
 function priceInWords(amount: number, lang: Language) {
   return numberToWords(amount, lang);

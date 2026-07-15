@@ -1,5 +1,5 @@
 {
-  "name": "@asurrax86/number2word",
+  "name": "@num-words/number2word",
   "version": "0.1.0",
   "description": "Convert numbers to English words (1 → one, 42 → forty-two)",
   "type": "module",
