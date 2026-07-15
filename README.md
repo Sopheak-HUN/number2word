@@ -1,6 +1,6 @@
 # number2words
 
-Convert numbers to words in **16 languages**.
+Convert numbers to words in **17 languages**.
 
 ```ts
 numberToWords(42);        // "forty-two"
@@ -8,7 +8,7 @@ numberToWords(42, "km");  // "សែសិបពីរ"
 numberToWords(42, "zh");  // "四十二"
 ```
 
-- 16 languages, each following its real grammar rules
+- 17 languages, each following its real grammar rules
 - Zero dependencies
 - Written in TypeScript — full type checking and autocomplete included
 - Handles any safe integer, positive or negative (up to ±9,007,199,254,740,991)
@@ -25,6 +25,7 @@ numberToWords(42, "zh");  // "四十二"
 | German | `de` | zweiundvierzig | eintausendzweihundertvierunddreißig |
 | Hindi | `hi` | बयालीस | एक हज़ार दो सौ चौंतीस |
 | Indonesian | `id` | empat puluh dua | seribu dua ratus tiga puluh empat |
+| Japanese | `ja` | 四十二 | 千二百三十四 |
 | Khmer | `km` | សែសិបពីរ | មួយពាន់ពីររយសាមសិបបួន |
 | Lao | `lo` | ສີ່ສິບສອງ | ໜຶ່ງພັນສອງຮ້ອຍສາມສິບສີ່ |
 | Malay | `ms` | empat puluh dua | seribu dua ratus tiga puluh empat |
@@ -110,7 +111,7 @@ Converts an integer to words in the given language (default `"en"`). Works for a
 
 ### `languages: Language[]`
 
-Array of all supported language codes: `["ar", "de", "en", "es", "fr", "hi", "id", "km", "lo", "ms", "my", "pt", "ru", "th", "vi", "zh"]`.
+Array of all supported language codes: `["ar", "de", "en", "es", "fr", "hi", "id", "ja", "km", "lo", "ms", "my", "pt", "ru", "th", "vi", "zh"]`.
 
 ### `Language`
 
@@ -118,7 +119,7 @@ Union type of the supported codes, e.g. `"en" | "fr" | "km" | ...`.
 
 ## Grammar notes
 
-Each language implements its real spelling rules, not word-for-word substitution — for example: Russian declension (одна тысяча / две тысячи / пять тысяч), Chinese 零-insertion (101 → 一百零一), Vietnamese sound changes (21 → hai mươi mốt), Thai เอ็ด (11 → สิบเอ็ด), German compounds (21000 → einundzwanzigtausend), Arabic duals (2000 → ألفان), the Indian numbering system for Hindi (लाख, करोड़), and the correct long or short scale for each language.
+Each language implements its real spelling rules, not word-for-word substitution — for example: Russian declension (одна тысяча / две тысячи / пять тысяч), Chinese 零-insertion (101 → 一百零一), Japanese 一-dropping (1000 → 千, but 11000 → 一万一千), Vietnamese sound changes (21 → hai mươi mốt), Thai เอ็ด (11 → สิบเอ็ด), German compounds (21000 → einundzwanzigtausend), Arabic duals (2000 → ألفان), the Indian numbering system for Hindi (लाख, करोड़), and the correct long or short scale for each language.
 
 ## Adding a language
 
@@ -134,10 +135,10 @@ Requires Node.js 24+ (runs TypeScript directly, no build step needed for tests).
 
 ```sh
 npm install          # install dev dependencies
-npm test             # run the test suite (85 tests)
+npm test             # run the test suite (91 tests)
 npm run typecheck    # type-check without emitting files
 npm run build        # compile src/ to dist/
-node example.ts      # print 1234 in all 16 languages
+node example.ts      # print 1234 in all 17 languages
 ```
 
 ## License

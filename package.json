@@ -1,7 +1,7 @@
 {
   "name": "@num-words/number2word",
   "version": "0.1.0",
-  "description": "Convert numbers to words in 16 languages (one, quarante-deux, 四十二, សែសិបពីរ)",
+  "description": "Convert numbers to words in 17 languages (one, quarante-deux, 四十二, សែសិបពីរ)",
   "publishConfig": {
     "access": "public"
   },

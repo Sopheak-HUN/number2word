@@ -5,6 +5,7 @@ import { es } from "./locales/es.ts";
 import { fr } from "./locales/fr.ts";
 import { hi } from "./locales/hi.ts";
 import { id } from "./locales/id.ts";
+import { ja } from "./locales/ja.ts";
 import { km } from "./locales/km.ts";
 import { lo } from "./locales/lo.ts";
 import { ms } from "./locales/ms.ts";
@@ -15,7 +16,7 @@ import { th } from "./locales/th.ts";
 import { vi } from "./locales/vi.ts";
 import { zh } from "./locales/zh.ts";
 
-const LOCALES = { ar, de, en, es, fr, hi, id, km, lo, ms, my, pt, ru, th, vi, zh } as const;
+const LOCALES = { ar, de, en, es, fr, hi, id, ja, km, lo, ms, my, pt, ru, th, vi, zh } as const;
 
 /** A supported language code. */
 export type Language = keyof typeof LOCALES;

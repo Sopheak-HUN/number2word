@@ -1,4 +1,4 @@
-import { numberToWords, languages, type Language } from "./src/index.ts";
+import { numberToWords, languages, type Language } from "@num-words/number2word";
 
 const NAMES: Record<Language, string> = {
   ar: "Arabic",
@@ -8,6 +8,7 @@ const NAMES: Record<Language, string> = {
   fr: "French",
   hi: "Hindi",
   id: "Indonesian",
+  ja: "Japanese",
   km: "Khmer",
   lo: "Lao",
   ms: "Malay",

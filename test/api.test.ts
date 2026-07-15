@@ -9,7 +9,7 @@ test("defaults to English", () => {
 test("lists supported languages", () => {
   assert.deepEqual(
     [...languages].sort(),
-    ["ar", "de", "en", "es", "fr", "hi", "id", "km", "lo", "ms", "my", "pt", "ru", "th", "vi", "zh"]
+    ["ar", "de", "en", "es", "fr", "hi", "id", "ja", "km", "lo", "ms", "my", "pt", "ru", "th", "vi", "zh"]
   );
 });
 
